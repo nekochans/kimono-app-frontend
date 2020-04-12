@@ -1,9 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import AppTitle from '../components/AppTitle';
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
-`;
+const IndexPage: React.FC = () => {
+  return (
+    <>
+      <AppTitle />
+    </>
+  );
+};
 
-export default () => <Title>My page</Title>;
+export default IndexPage;
