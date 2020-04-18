@@ -106,3 +106,6 @@ dist
 # IDEA Setting Files
 .idea
 kimono-app-frontend.iml
+
+# Storybook build output
+build
