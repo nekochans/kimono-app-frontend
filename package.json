@@ -1,6 +1,7 @@
 {
-  "name": "with-typescript-styled-components",
+  "name": "kimono-app-frontend",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -56,5 +57,5 @@
     "typescript": "^3.8.3",
     "yargs": "^15.3.1"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
