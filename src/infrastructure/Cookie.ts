@@ -21,6 +21,7 @@ export const setCookie = (params: SetCookieParams, ctx?: NextPageContext) => {
   // https://github.com/maticzav/nookies#setcookiectx-name-value-options-or-cookiessetctx-name-value-options
   nookiesSetCookie(ctx, params.key, params.value, {
     path: '/',
+    httpOnly: true,
   });
 };
 
