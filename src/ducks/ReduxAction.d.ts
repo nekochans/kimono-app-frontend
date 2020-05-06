@@ -17,12 +17,15 @@ interface FulfilledAction<ThunkArg, T> {
 
 interface RejectedAction<ThunkArg> {
   type: string;
-  error: {
-    name?: string;
-    message?: string;
-    code?: string;
-    stack?: string;
-  };
+  /* eslint @typescript-eslint/no-explicit-any: 0 */
+  error:
+    | {
+        name?: string;
+        message?: string;
+        code?: string;
+        stack?: string;
+      }
+    | any;
   meta: {
     requestId: string;
     arg: ThunkArg;
