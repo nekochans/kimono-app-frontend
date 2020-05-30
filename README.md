@@ -1,4 +1,6 @@
 # kimono-app-frontend
+![ci-master](https://github.com/nekochans/kimono-app-frontend/workflows/ci-master/badge.svg)
+
 着物アプリのフロントエンド（仮）
 
 # TODO ここから下は自動生成された部分、後でREADMEの内容を整理する
