@@ -10,6 +10,7 @@
     "format": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'; stylelint --fix 'src/**/*.{css,jsx,tsx}';",
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
+    "test:ci": "jest --runInBand --collect-coverage",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -o build/storybook"
   },
