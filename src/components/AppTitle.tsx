@@ -1,13 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const Title: React.FC = styled.h1`
-  color: red;
-  font-size: 50px;
-`;
+type Props = {
+  text: string;
+};
 
-const AppTitle: React.FC = () => {
-  return <Title>message</Title>;
+const AppTitle: React.FC<Props> = ({ text }: Props) => {
+  return (
+    <>
+      <h1>{text}</h1>
+      <style jsx>{`
+        h1 {
+          color: red;
+          font-size: 50px;
+        }
+      `}</style>
+    </>
+  );
 };
 
 export default AppTitle;
