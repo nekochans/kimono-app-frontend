@@ -4,6 +4,14 @@
 
 着物アプリのフロントエンド（仮）
 
+## Storybookについて
+
+CSF（Component Story Format）で記載します。
+
+書き方に関しては下記のドキュメントを参照して下さい。
+
+https://storybook.js.org/docs/formats/component-story-format/
+
 # TODO ここから下は自動生成された部分、後でREADMEの内容を整理する
 
 # TypeScript & Styled Components Next.js example
