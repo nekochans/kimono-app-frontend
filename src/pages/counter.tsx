@@ -1,14 +1,28 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import counterSlice from '../ducks/counter/slice';
 import { useCounterState } from '../ducks/counter/selectors';
 import { asyncIncrementCounter } from '../ducks/counter/asyncActions';
 
-const StyledMessage = styled.p`
-  color: red;
-  font-weight: bold;
-`;
+type ErrorMessageProps = {
+  message: string;
+};
+
+const StyledErrorMessage: React.FC<ErrorMessageProps> = ({
+  message,
+}: ErrorMessageProps) => {
+  return (
+    <>
+      <style jsx>{`
+        p {
+          color: red;
+          font-weight: bold;
+        }
+      `}</style>
+      <p>問題が発生しました。 {message}</p>
+    </>
+  );
+};
 
 const CounterPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -44,7 +58,7 @@ const CounterPage: React.FC = () => {
       <p>ねこが{useCounterState().counter.count} 匹いる</p>
       {state.loading ? <p>通信中</p> : ''}
       {state.error ? (
-        <StyledMessage>問題が発生しました。{state.errorMessage}</StyledMessage>
+        <StyledErrorMessage {...{ message: state.errorMessage }} />
       ) : (
         ''
       )}
