@@ -2,7 +2,13 @@ import React from 'react';
 import AppTitle from './AppTitle';
 
 export default {
-  title: 'AppTitle',
+  title: 'src/components/AppTitle.tsx',
+  component: AppTitle,
+  includeStories: ['showAppTitleWithProp'],
 };
 
-export const showAppTitle = () => <AppTitle />;
+export const testProps = {
+  text: '🐱KimonoApp🐱',
+};
+
+export const showAppTitleWithProp = () => <AppTitle {...testProps} />;
