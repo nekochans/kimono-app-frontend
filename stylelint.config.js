@@ -26,7 +26,7 @@ module.exports = {
   ],
   ignoreFiles: [
     '**/node_modules/**',
-    'src/styles/**'
+    'src/styles/bundle.css'
   ],
   plugins: ['stylelint-order'],
   rules: {
@@ -34,6 +34,10 @@ module.exports = {
     'indentation': 2,
     'no-missing-end-of-source-newline': null,
     'string-quotes': 'single',
-    'order/properties-alphabetical-order': true
+    'order/properties-alphabetical-order': true,
+    'at-rule-no-unknown': [
+      true,
+      { ignoreAtRules: ['tailwind'] }
+    ]
   },
 };
