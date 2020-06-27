@@ -20,7 +20,6 @@ export default class MyDocument extends Document {
         ...initialProps.styles,
         <style
           key="custom"
-          /* eslint-disable react/no-danger */
           dangerouslySetInnerHTML={{
             __html: bundleCss,
           }}
