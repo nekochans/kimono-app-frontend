@@ -109,3 +109,6 @@ kimono-app-frontend.iml
 
 # Storybook build output
 build
+
+# PostCSS output
+src/styles/bundle.css
