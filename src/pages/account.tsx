@@ -64,4 +64,4 @@ const AuthStateApp: React.FunctionComponent = () => {
   );
 };
 
-export default AuthStateApp;
+export default AccountPage;
