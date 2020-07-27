@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 import accountSlice from '../ducks/account/slice';
 import { useAccountState } from '../ducks/account/selectors';
 
-const AuthStateApp: React.FunctionComponent = () => {
+const AccountPage: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const state = useAccountState().account;
 
