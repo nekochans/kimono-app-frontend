@@ -1,25 +1,66 @@
 import React from 'react';
-import { AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import {
+  AmplifyAuthenticator,
+  AmplifySignOut,
+  AmplifySignUp,
+} from '@aws-amplify/ui-react';
+import {
+  AuthState,
+  onAuthUIStateChange,
+  CognitoUserInterface,
+} from '@aws-amplify/ui-components';
+import { useDispatch } from 'react-redux';
+import accountSlice from '../ducks/account/slice';
+import { useAccountState } from '../ducks/account/selectors';
 
 const AuthStateApp: React.FunctionComponent = () => {
-  const [authState, setAuthState] = React.useState<AuthState>();
-  const [user, setUser] = React.useState<object | undefined>();
+  const dispatch = useDispatch();
+  const state = useAccountState().account;
 
   React.useEffect(() => {
     return onAuthUIStateChange((nextAuthState, authData) => {
-      setAuthState(nextAuthState);
-      setUser(authData);
-    });
-  }, []);
+      dispatch(accountSlice.actions.setAuthState(nextAuthState));
+      const user = authData as CognitoUserInterface;
 
-  return authState === AuthState.SignedIn && user ? (
+      if (user !== undefined && user.username) {
+        dispatch(accountSlice.actions.setName(user.username));
+      }
+    });
+  });
+
+  return state.authState === AuthState.SignedIn && state.name ? (
     <div className="App">
-      <div>Hello, {user.username}</div>
+      <div>Hello, {state.name}</div>
       <AmplifySignOut />
     </div>
   ) : (
-    <AmplifyAuthenticator />
+    <AmplifyAuthenticator>
+      <AmplifySignUp
+        headerText="Sign Up"
+        slot="sign-up"
+        usernameAlias="username"
+        formFields={[
+          {
+            type: 'username',
+            label: 'ユーザ名(必須)',
+            placeholder: '',
+            required: true,
+          },
+          {
+            type: 'email',
+            label: 'メールアドレス(必須)',
+            placeholder: '',
+            required: true,
+          },
+          {
+            type: 'password',
+            label: 'パスワード(必須)',
+            placeholder: '',
+            required: true,
+          },
+        ]}
+      />
+    </AmplifyAuthenticator>
   );
 };
 
