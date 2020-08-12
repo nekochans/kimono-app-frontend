@@ -32,7 +32,6 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: |
-          npm install -g yarn
           yarn install
           yarn run build
           yarn run lint
