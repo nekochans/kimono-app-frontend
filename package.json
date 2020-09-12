@@ -22,6 +22,7 @@
     "@aws-amplify/ui-react": "^0.2.19",
     "@reduxjs/toolkit": "^1.4.0",
     "aws-amplify": "^3.2.0",
+    "extensible-custom-error": "^0.0.7",
     "next": "^9.5.3",
     "nookies": "^2.4.0",
     "react": "^16.13.1",
