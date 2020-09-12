@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:next": "next",
+    "dev:next": "next -p 3100",
     "dev:css": "postcss src/styles/index.css -o src/styles/bundle.css -w",
     "build": "yarn run build:css && next build",
     "build:css": "postcss src/styles/index.css -o src/styles/bundle.css",
