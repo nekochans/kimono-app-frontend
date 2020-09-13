@@ -1,8 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Auth } from 'aws-amplify';
-import { CreateAccountRequest } from '../../domain/Cognito';
+import {
+  CreateAccountRequest,
+  ResendCreateAccountRequest,
+} from '../../domain/Cognito';
 import AccountAlreadyExistsError from '../../domain/error/AccountAlreadyExistsError';
 import CreateAccountUnexpectedError from '../../domain/error/CreateAccountUnexpectedError';
+import ResendCreateAccountRequestUnexpectedError from '../../domain/error/ResendCreateAccountRequestUnexpectedError';
 
 export const createAccountRequest = createAsyncThunk<
   void,
@@ -21,6 +25,20 @@ export const createAccountRequest = createAsyncThunk<
       }
 
       throw new CreateAccountUnexpectedError(e.message, e);
+    }
+  },
+);
+
+export const resendCreateAccountRequest = createAsyncThunk<
+  void,
+  ResendCreateAccountRequest
+>(
+  'cognito/resendCreateAccountRequest',
+  async (arg: ResendCreateAccountRequest): Promise<void> => {
+    try {
+      await Auth.resendSignUp(arg.email);
+    } catch (e) {
+      throw new ResendCreateAccountRequestUnexpectedError(e.message, e);
     }
   },
 );

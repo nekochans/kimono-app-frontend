@@ -1,7 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useCognitoState } from '../../ducks/cognito/selectors';
-import { createAccountRequest } from '../../ducks/cognito/asyncActions';
+import {
+  createAccountRequest,
+  resendCreateAccountRequest,
+} from '../../ducks/cognito/asyncActions';
 
 const AccountCreatePage: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,6 +24,14 @@ const AccountCreatePage: React.FC = () => {
     }
 
     dispatch(createAccountRequest({ email, password }));
+  };
+
+  const handleResendCreateAccountSubmit = async () => {
+    if (!email) {
+      return;
+    }
+
+    dispatch(resendCreateAccountRequest({ email }));
   };
 
   const inputStyle = {
@@ -52,14 +63,19 @@ const AccountCreatePage: React.FC = () => {
           アカウント作成用の認証メールを送信する
         </button>
         {state.errorName === 'AccountAlreadyExistsError' ? (
-          <button type="button">認証メールを再送信する</button>
+          <button type="button" onClick={handleResendCreateAccountSubmit}>
+            認証メールを再送信する
+          </button>
         ) : (
           ''
         )}
       </form>
       {state.loading ? <p>通信中</p> : ''}
-      {state.successfulAccountCreateRequest ? (
-        <div>{email} に認証メールを送信しました。メールをご確認下さい。</div>
+      {state.successfulAccountCreateRequest ||
+      state.successfulResendAccountCreateRequest ? (
+        <div>
+          {state.sentEmail} に認証メールを送信しました。メールをご確認下さい。
+        </div>
       ) : (
         ''
       )}
