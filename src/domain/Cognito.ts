@@ -6,3 +6,8 @@ export type CreateAccountRequest = {
 export type ResendCreateAccountRequest = {
   email: string;
 };
+
+export type LoginRequest = {
+  email: string;
+  password: string;
+};
