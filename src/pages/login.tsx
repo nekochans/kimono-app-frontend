@@ -1,7 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useCognitoState } from '../ducks/cognito/selectors';
-import { loginRequest } from '../ducks/cognito/asyncActions';
+import {
+  loginRequest,
+  resendCreateAccountRequest,
+} from '../ducks/cognito/asyncActions';
 
 const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,6 +35,14 @@ const LoginPage: React.FC = () => {
     await dispatch(loginRequest({ email, password }));
   };
 
+  const handleResendCreateAccountSubmit = async () => {
+    if (!email) {
+      return;
+    }
+
+    dispatch(resendCreateAccountRequest({ email }));
+  };
+
   return (
     <>
       <h1>ログイン</h1>
@@ -52,13 +63,23 @@ const LoginPage: React.FC = () => {
           ログイン
         </button>
         {state.errorName === 'NotConfirmedError' ? (
-          <button type="button">認証メールを再送信する</button>
+          <button type="button" onClick={handleResendCreateAccountSubmit}>
+            認証メールを再送信する
+          </button>
         ) : (
           ''
         )}
       </form>
       {state.errorMessage ? (
         <div style={errorStyle}>{state.errorMessage}</div>
+      ) : (
+        ''
+      )}
+      {state.loading ? <p>通信中</p> : ''}
+      {state.successfulResendAccountCreateRequest ? (
+        <div>
+          {state.sentEmail} に認証メールを送信しました。メールをご確認下さい。
+        </div>
       ) : (
         ''
       )}
