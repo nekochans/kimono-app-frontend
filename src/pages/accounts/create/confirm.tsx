@@ -1,6 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { Auth } from 'aws-amplify';
+import Link from 'next/link';
 
 type Props = {
   user: { sub: string };
@@ -12,7 +13,14 @@ const AccountCreateConfirmPage: React.FC<Props> = ({ user, error }: Props) => {
   return (
     <>
       {error ? <div>エラーが発生しました。 {error.message}</div> : ''}
-      {user ? <div>アカウント登録が完了しました！ {user.sub}</div> : ''}
+      {user ? (
+        <div>
+          アカウント登録が完了しました！ アカウントIDは {user.sub} です！{' '}
+          <Link href="/login">ログイン</Link> を行って下さい！
+        </div>
+      ) : (
+        ''
+      )}
     </>
   );
 };

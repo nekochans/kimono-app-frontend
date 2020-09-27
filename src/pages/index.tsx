@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import AppTitle from '../components/AppTitle';
 
 export const config = {
@@ -13,6 +14,16 @@ const IndexPage: React.FC = () => {
   return (
     <>
       <AppTitle {...props} />
+      <div>
+        <ul>
+          <li>
+            <Link href="/accounts/create">アカウント作成</Link>
+          </li>
+          <li>
+            <Link href="/login">ログイン</Link>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };
