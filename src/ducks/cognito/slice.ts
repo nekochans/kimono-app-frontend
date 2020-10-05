@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   createAccountRequest,
   loginRequest,
+  passwordResetRequest,
   resendCreateAccountRequest,
 } from './asyncActions';
 import {
   CreateAccountRequest,
   LoginRequest,
+  PasswordResetRequest,
   ResendCreateAccountRequest,
 } from '../../domain/Cognito';
 
@@ -18,6 +20,7 @@ export type CognitoState = {
   successfulAccountCreateRequest: boolean;
   successfulResendAccountCreateRequest: boolean;
   successfulLoginRequest: boolean;
+  successfulPasswordResetRequest: boolean;
   sentEmail: string;
 };
 
@@ -29,6 +32,7 @@ export const initialState: CognitoState = {
   successfulAccountCreateRequest: false,
   successfulResendAccountCreateRequest: false,
   successfulLoginRequest: false,
+  successfulPasswordResetRequest: false,
   sentEmail: '',
 };
 
@@ -47,6 +51,7 @@ const cognitoSlice = createSlice({
         successfulAccountCreateRequest: false,
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
         sentEmail: '',
       };
     });
@@ -62,6 +67,7 @@ const cognitoSlice = createSlice({
           successfulAccountCreateRequest: false,
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
+          successfulPasswordResetRequest: false,
           sentEmail: '',
         };
       },
@@ -76,6 +82,7 @@ const cognitoSlice = createSlice({
         successfulAccountCreateRequest: true,
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
         sentEmail: action.meta.arg.email,
       };
     });
@@ -88,6 +95,7 @@ const cognitoSlice = createSlice({
         successfulAccountCreateRequest: false,
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
         sentEmail: '',
       };
     });
@@ -103,6 +111,7 @@ const cognitoSlice = createSlice({
           successfulAccountCreateRequest: false,
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
+          successfulPasswordResetRequest: false,
           sentEmail: '',
         };
       },
@@ -114,6 +123,7 @@ const cognitoSlice = createSlice({
         successfulAccountCreateRequest: false,
         successfulResendAccountCreateRequest: true,
         successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
         sentEmail: action.meta.arg.email,
       };
     });
@@ -126,10 +136,11 @@ const cognitoSlice = createSlice({
         errorMessage: '',
         successfulAccountCreateRequest: false,
         successfulResendAccountCreateRequest: false,
+        successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
         sentEmail: '',
       };
     });
-
     builder.addCase(
       loginRequest.rejected,
       (state, action: RejectedAction<LoginRequest>) => {
@@ -142,6 +153,7 @@ const cognitoSlice = createSlice({
           successfulAccountCreateRequest: false,
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
+          successfulPasswordResetRequest: false,
           sentEmail: '',
         };
       },
@@ -156,7 +168,53 @@ const cognitoSlice = createSlice({
         successfulAccountCreateRequest: false,
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: true,
+        successfulPasswordResetRequest: false,
         sentEmail: '',
+      };
+    });
+    builder.addCase(passwordResetRequest.pending, (state) => {
+      return {
+        ...state,
+        loading: true,
+        error: false,
+        errorName: '',
+        errorMessage: '',
+        successfulAccountCreateRequest: false,
+        successfulResendAccountCreateRequest: false,
+        successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
+        sentEmail: '',
+      };
+    });
+    builder.addCase(
+      passwordResetRequest.rejected,
+      (state, action: RejectedAction<PasswordResetRequest>) => {
+        return {
+          ...state,
+          loading: false,
+          error: true,
+          errorName: action.error.name,
+          errorMessage: action.error.message,
+          successfulAccountCreateRequest: false,
+          successfulResendAccountCreateRequest: false,
+          successfulLoginRequest: false,
+          successfulPasswordResetRequest: false,
+          sentEmail: '',
+        };
+      },
+    );
+    builder.addCase(passwordResetRequest.fulfilled, (state, action) => {
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        errorName: '',
+        errorMessage: '',
+        successfulAccountCreateRequest: false,
+        successfulResendAccountCreateRequest: false,
+        successfulLoginRequest: false,
+        successfulPasswordResetRequest: true,
+        sentEmail: action.meta.arg.email,
       };
     });
   },

@@ -4,6 +4,7 @@ import {
   CreateAccountRequest,
   ResendCreateAccountRequest,
   LoginRequest,
+  PasswordResetRequest,
 } from '../../domain/Cognito';
 import AccountAlreadyExistsError from '../../domain/error/AccountAlreadyExistsError';
 import CreateAccountUnexpectedError from '../../domain/error/CreateAccountUnexpectedError';
@@ -12,6 +13,7 @@ import NotConfirmedError from '../../domain/error/NotConfirmedError';
 import LoginUnexpectedError from '../../domain/error/LoginUnexpectedError';
 import PasswordAttemptsExceeded from '../../domain/error/PasswordAttemptsExceeded';
 import WrongCredentialsError from '../../domain/error/WrongCredentialsError';
+import PasswordResetRequestError from '../../domain/error/PasswordResetRequestError';
 
 export const createAccountRequest = createAsyncThunk<
   void,
@@ -73,3 +75,14 @@ export const loginRequest = createAsyncThunk<void, LoginRequest>(
     }
   },
 );
+
+export const passwordResetRequest = createAsyncThunk<
+  void,
+  PasswordResetRequest
+>('cognito/passwordResetRequest', async (arg: PasswordResetRequest) => {
+  try {
+    await Auth.forgotPassword(arg.email);
+  } catch (e) {
+    throw new PasswordResetRequestError(e.message, e);
+  }
+});
