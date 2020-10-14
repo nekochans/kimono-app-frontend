@@ -2,19 +2,16 @@ import { Store, combineReducers } from 'redux';
 import logger from 'redux-logger';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import counterSlice, { initialState as counterState } from './counter/slice';
-import accountSlice, { initialState as accountState } from './account/slice';
 import cognitoSlice, { initialState as cognitoState } from './cognito/slice';
 
 const rootReducer = combineReducers({
   counter: counterSlice.reducer,
-  account: accountSlice.reducer,
   cognito: cognitoSlice.reducer,
 });
 
 const preloadedState = () => {
   return {
     counter: counterState,
-    account: accountState,
     cognito: cognitoState,
   };
 };

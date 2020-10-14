@@ -18,8 +18,6 @@
     "build:storybook": "build-storybook -o build/storybook"
   },
   "dependencies": {
-    "@aws-amplify/ui-components": "^0.8.2",
-    "@aws-amplify/ui-react": "^0.2.19",
     "@reduxjs/toolkit": "^1.4.0",
     "aws-amplify": "^3.2.0",
     "extensible-custom-error": "^0.0.7",
