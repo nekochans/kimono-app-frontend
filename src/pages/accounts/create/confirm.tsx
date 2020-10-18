@@ -4,7 +4,7 @@ import { Auth } from 'aws-amplify';
 import Link from 'next/link';
 
 type Props = {
-  user: { sub: string };
+  user: { cognitoUserName: string };
   error: Error;
 };
 
@@ -15,8 +15,8 @@ const AccountCreateConfirmPage: React.FC<Props> = ({ user, error }: Props) => {
       {error ? <div>エラーが発生しました。 {error.message}</div> : ''}
       {user ? (
         <div>
-          アカウント登録が完了しました！ アカウントIDは {user.sub} です！{' '}
-          <Link href="/login">ログイン</Link> を行って下さい！
+          アカウント登録が完了しました！ アカウントIDは {user.cognitoUserName}{' '}
+          です！ <Link href="/login">ログイン</Link> を行って下さい！
         </div>
       ) : (
         ''
@@ -27,18 +27,18 @@ const AccountCreateConfirmPage: React.FC<Props> = ({ user, error }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const { sub, code } = context.query;
+    const { userName, code } = context.query;
 
-    if (sub === undefined || code === undefined) {
+    if (userName === undefined || code === undefined) {
       return {
         props: {},
       };
     }
 
     // 返り値はSUCCESSという文字列が返ってくるだけ
-    await Auth.confirmSignUp(String(sub), String(code));
+    await Auth.confirmSignUp(String(userName), String(code));
 
-    return { props: { user: { sub } } };
+    return { props: { user: { userName } } };
   } catch (e) {
     return { props: { error: e } };
   }
