@@ -2,12 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   createAccountRequest,
   loginRequest,
+  passwordResetConfirmRequest,
   passwordResetRequest,
   resendCreateAccountRequest,
 } from './asyncActions';
 import {
   CreateAccountRequest,
   LoginRequest,
+  PasswordResetConfirmRequest,
   PasswordResetRequest,
   ResendCreateAccountRequest,
 } from '../../domain/Cognito';
@@ -21,6 +23,7 @@ export type CognitoState = {
   successfulResendAccountCreateRequest: boolean;
   successfulLoginRequest: boolean;
   successfulPasswordResetRequest: boolean;
+  successfulPasswordResetConfirm: boolean;
   sentEmail: string;
 };
 
@@ -33,6 +36,7 @@ export const initialState: CognitoState = {
   successfulResendAccountCreateRequest: false,
   successfulLoginRequest: false,
   successfulPasswordResetRequest: false,
+  successfulPasswordResetConfirm: false,
   sentEmail: '',
 };
 
@@ -52,6 +56,7 @@ const cognitoSlice = createSlice({
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
         successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
         sentEmail: '',
       };
     });
@@ -68,6 +73,7 @@ const cognitoSlice = createSlice({
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
           successfulPasswordResetRequest: false,
+          successfulPasswordResetConfirm: false,
           sentEmail: '',
         };
       },
@@ -83,6 +89,7 @@ const cognitoSlice = createSlice({
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
         successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
         sentEmail: action.meta.arg.email,
       };
     });
@@ -96,6 +103,7 @@ const cognitoSlice = createSlice({
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
         successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
         sentEmail: '',
       };
     });
@@ -112,6 +120,7 @@ const cognitoSlice = createSlice({
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
           successfulPasswordResetRequest: false,
+          successfulPasswordResetConfirm: false,
           sentEmail: '',
         };
       },
@@ -124,6 +133,7 @@ const cognitoSlice = createSlice({
         successfulResendAccountCreateRequest: true,
         successfulLoginRequest: false,
         successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
         sentEmail: action.meta.arg.email,
       };
     });
@@ -138,6 +148,7 @@ const cognitoSlice = createSlice({
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
         successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
         sentEmail: '',
       };
     });
@@ -154,6 +165,7 @@ const cognitoSlice = createSlice({
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
           successfulPasswordResetRequest: false,
+          successfulPasswordResetConfirm: false,
           sentEmail: '',
         };
       },
@@ -169,6 +181,7 @@ const cognitoSlice = createSlice({
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: true,
         successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
         sentEmail: '',
       };
     });
@@ -183,6 +196,7 @@ const cognitoSlice = createSlice({
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
         successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
         sentEmail: '',
       };
     });
@@ -199,6 +213,7 @@ const cognitoSlice = createSlice({
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
           successfulPasswordResetRequest: false,
+          successfulPasswordResetConfirm: false,
           sentEmail: '',
         };
       },
@@ -214,7 +229,56 @@ const cognitoSlice = createSlice({
         successfulResendAccountCreateRequest: false,
         successfulLoginRequest: false,
         successfulPasswordResetRequest: true,
+        successfulPasswordResetConfirm: false,
         sentEmail: action.meta.arg.email,
+      };
+    });
+    builder.addCase(passwordResetConfirmRequest.pending, (state) => {
+      return {
+        ...state,
+        loading: true,
+        error: false,
+        errorName: '',
+        errorMessage: '',
+        successfulAccountCreateRequest: false,
+        successfulResendAccountCreateRequest: false,
+        successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
+        sentEmail: '',
+      };
+    });
+    builder.addCase(
+      passwordResetConfirmRequest.rejected,
+      (state, action: RejectedAction<PasswordResetConfirmRequest>) => {
+        return {
+          ...state,
+          loading: false,
+          error: true,
+          errorName: action.error.name,
+          errorMessage: action.error.message,
+          successfulAccountCreateRequest: false,
+          successfulResendAccountCreateRequest: false,
+          successfulLoginRequest: false,
+          successfulPasswordResetRequest: false,
+          successfulPasswordResetConfirm: false,
+          sentEmail: '',
+        };
+      },
+    );
+    builder.addCase(passwordResetConfirmRequest.fulfilled, (state) => {
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        errorName: '',
+        errorMessage: '',
+        successfulAccountCreateRequest: false,
+        successfulResendAccountCreateRequest: false,
+        successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: true,
+        sentEmail: '',
       };
     });
   },
