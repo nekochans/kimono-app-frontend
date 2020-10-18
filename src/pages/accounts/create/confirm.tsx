@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // 返り値はSUCCESSという文字列が返ってくるだけ
     await Auth.confirmSignUp(String(userName), String(code));
 
-    return { props: { user: { userName } } };
+    return { props: { user: { cognitoUserName: userName } } };
   } catch (e) {
     return { props: { error: e } };
   }
