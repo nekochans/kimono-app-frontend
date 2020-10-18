@@ -12,7 +12,7 @@ import CreateAccountUnexpectedError from '../../domain/error/CreateAccountUnexpe
 import ResendCreateAccountRequestUnexpectedError from '../../domain/error/ResendCreateAccountRequestUnexpectedError';
 import NotConfirmedError from '../../domain/error/NotConfirmedError';
 import LoginUnexpectedError from '../../domain/error/LoginUnexpectedError';
-import PasswordAttemptsExceeded from '../../domain/error/PasswordAttemptsExceeded';
+import PasswordAttemptsExceededError from '../../domain/error/PasswordAttemptsExceededError';
 import WrongCredentialsError from '../../domain/error/WrongCredentialsError';
 import PasswordResetRequestError from '../../domain/error/PasswordResetRequestError';
 import PasswordResetConfirmError from '../../domain/error/PasswordResetConfirmError';
@@ -66,7 +66,7 @@ export const loginRequest = createAsyncThunk<void, LoginRequest>(
         e.code === 'NotAuthorizedException' &&
         e.message === 'Password attempts exceeded'
       ) {
-        throw new PasswordAttemptsExceeded(e.message, e);
+        throw new PasswordAttemptsExceededError(e.message, e);
       }
 
       if (e.code === 'NotAuthorizedException') {
