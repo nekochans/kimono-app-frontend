@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import Link from 'next/link';
 import { useCognitoState } from '../ducks/cognito/selectors';
 import {
   loginRequest,
@@ -62,6 +63,9 @@ const LoginPage: React.FC = () => {
         <button type="button" onClick={handleLoginSubmit}>
           ログイン
         </button>
+        <p>
+          <Link href="/password/reset">パスワードを忘れた方はこちら</Link>
+        </p>
         {state.errorName === 'NotConfirmedError' ? (
           <button type="button" onClick={handleResendCreateAccountSubmit}>
             認証メールを再送信する

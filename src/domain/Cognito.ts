@@ -11,3 +11,13 @@ export type LoginRequest = {
   email: string;
   password: string;
 };
+
+export type PasswordResetRequest = {
+  email: string;
+};
+
+export type PasswordResetConfirmRequest = {
+  newPassword: string;
+  confirmationCode: string;
+  cognitoUserName: string;
+};

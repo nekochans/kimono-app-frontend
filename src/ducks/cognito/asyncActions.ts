@@ -4,14 +4,18 @@ import {
   CreateAccountRequest,
   ResendCreateAccountRequest,
   LoginRequest,
+  PasswordResetRequest,
+  PasswordResetConfirmRequest,
 } from '../../domain/Cognito';
 import AccountAlreadyExistsError from '../../domain/error/AccountAlreadyExistsError';
 import CreateAccountUnexpectedError from '../../domain/error/CreateAccountUnexpectedError';
 import ResendCreateAccountRequestUnexpectedError from '../../domain/error/ResendCreateAccountRequestUnexpectedError';
 import NotConfirmedError from '../../domain/error/NotConfirmedError';
 import LoginUnexpectedError from '../../domain/error/LoginUnexpectedError';
-import PasswordAttemptsExceeded from '../../domain/error/PasswordAttemptsExceeded';
+import PasswordAttemptsExceededError from '../../domain/error/PasswordAttemptsExceededError';
 import WrongCredentialsError from '../../domain/error/WrongCredentialsError';
+import PasswordResetRequestError from '../../domain/error/PasswordResetRequestError';
+import PasswordResetConfirmError from '../../domain/error/PasswordResetConfirmError';
 
 export const createAccountRequest = createAsyncThunk<
   void,
@@ -62,7 +66,7 @@ export const loginRequest = createAsyncThunk<void, LoginRequest>(
         e.code === 'NotAuthorizedException' &&
         e.message === 'Password attempts exceeded'
       ) {
-        throw new PasswordAttemptsExceeded(e.message, e);
+        throw new PasswordAttemptsExceededError(e.message, e);
       }
 
       if (e.code === 'NotAuthorizedException') {
@@ -70,6 +74,35 @@ export const loginRequest = createAsyncThunk<void, LoginRequest>(
       }
 
       throw new LoginUnexpectedError(e.message, e);
+    }
+  },
+);
+
+export const passwordResetRequest = createAsyncThunk<
+  void,
+  PasswordResetRequest
+>('cognito/passwordResetRequest', async (arg: PasswordResetRequest) => {
+  try {
+    await Auth.forgotPassword(arg.email);
+  } catch (e) {
+    throw new PasswordResetRequestError(e.message, e);
+  }
+});
+
+export const passwordResetConfirmRequest = createAsyncThunk<
+  void,
+  PasswordResetConfirmRequest
+>(
+  'cognito/passwordResetConfirmRequest',
+  async (arg: PasswordResetConfirmRequest) => {
+    try {
+      await Auth.forgotPasswordSubmit(
+        arg.cognitoUserName,
+        arg.confirmationCode,
+        arg.newPassword,
+      );
+    } catch (e) {
+      throw new PasswordResetConfirmError(e.message, e);
     }
   },
 );
