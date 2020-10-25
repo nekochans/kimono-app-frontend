@@ -1,47 +1,37 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
-    node: true,
-    'jest/globals': true,
+    es2020: true,
   },
   extends: [
+    'plugin:react/recommended',
     'airbnb',
-    'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
+    'airbnb/hooks',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    'plugin:jest/recommended',
-    'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended',
-    'plugin:react/recommended',
     'prettier',
     'prettier/@typescript-eslint',
     'prettier/react',
     'prettier/standard',
   ],
-  globals: {
-    Atomics: 'readonly',
-    cy: 'readonly',
-    Cypress: 'readonly',
-    SharedArrayBuffer: 'readonly',
-    __DEV__: true,
-  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
-    project: './tsconfig.json',
+    ecmaVersion: 2020,
+    project: './tsconfig.eslint.json',
     sourceType: 'module',
+    tsconfigRootDir: __dirname,
   },
   plugins: [
     '@typescript-eslint',
     'import',
-    'jest',
     'jsx-a11y',
     'prefer-arrow',
     'prettier',
@@ -50,84 +40,38 @@ module.exports = {
   ],
   root: true,
   rules: {
-    // eslint official
-    'linebreak-style': ['error', 'unix'],
-    'newline-before-return': 'error',
-    'no-console': 'warn',
-    'no-continue': 'off',
-    quotes: ['error', 'single', { avoidEscape: true }],
-    'require-yield': 'error',
-    semi: ['error', 'always'],
-    // for react-app-env.d.ts (https://github.com/facebook/create-react-app/issues/6560)
-    'spaced-comment': [
+    'lines-between-class-members': [
       'error',
       'always',
       {
-        markers: ['/'],
+        exceptAfterSingleLine: true,
       },
     ],
-
-    // @typescript-eslint
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-member-accessibility': 'off',
-    indent: 'off',
-    '@typescript-eslint/indent': 'off',
-    '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
-    '@typescript-eslint/prefer-interface': 'off',
-
-    // airbnb
-    'no-restricted-syntax': [
+    // should be rewritten as `['error', { allowAsStatement: true }]` in ESLint 7 or later
+    // SEE: https://github.com/typescript-eslint/typescript-eslint/issues/1184
+    'no-void': 'off',
+    'no-use-before-define': 'off',
+    'padding-line-between-statements': [
       'error',
       {
-        selector: 'ForInStatement',
-        message:
-          'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
-      },
-      {
-        selector: 'LabeledStatement',
-        message:
-          'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
-      },
-      {
-        selector: 'WithStatement',
-        message:
-          '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+        blankLine: 'always',
+        prev: '*',
+        next: 'return',
       },
     ],
-    // prefer-arrow
-    'prefer-arrow/prefer-arrow-functions': [
+    '@typescript-eslint/no-unused-vars': [
       'error',
       {
-        disallowPrototype: true,
-        singleReturnOnly: true,
-        classPropertiesAllowed: false,
+        'vars': 'all',
+        'args': 'after-used',
+        'argsIgnorePattern': '_',
+        'ignoreRestSiblings': false,
+        'varsIgnorePattern': '_',
       },
     ],
-
-    // react
-    'react/jsx-filename-extension': [
-      'error',
-      {
-        extensions: ['jsx', 'tsx'],
-      },
-    ],
-    'react/jsx-props-no-spreading': [
-      'warn',
-      {
-        custom: 'ignore',
-      },
-    ],
-    'react/prop-types': 'off',
-
-    // react hooks
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'error',
-
-    // import
     'import/extensions': [
       'error',
-      'always',
+      'ignorePackages',
       {
         js: 'never',
         jsx: 'never',
@@ -135,36 +79,42 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'import/no-extraneous-dependencies': [
+    'prefer-arrow/prefer-arrow-functions': [
       'error',
       {
-        devDependencies: [
-          '.storybook/**',
-          'stories/**',
-          '**/*/*.story.*',
-          '**/*/*.stories.*',
-          '**/__specs__/**',
-          '**/*/*.spec.*',
-          '**/__tests__/**',
-          '**/*/*.test.*',
-          'src/setupTests.*',
-        ],
+        disallowPrototype: true,
+        singleReturnOnly: false,
+        classPropertiesAllowed: false,
       },
     ],
-    'import/prefer-default-export': 'off',
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        extensions: ['.jsx', '.tsx'],
+      },
+    ],
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'enforce',
+        custom: 'enforce',
+        explicitSpread: 'ignore',
+      },
+    ],
   },
-  settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/resolver': {
-      node: {
-        extensions: ['.js', 'jsx', '.ts', '.tsx'],
-        paths: ['src'],
+  overrides: [
+    {
+      'files': ['*.tsx'],
+      'rules': {
+        'react/prop-types': 'off',
       },
     },
-    react: {
-      version: 'detect',
+  ],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
     },
   },
 };
