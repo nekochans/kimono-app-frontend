@@ -8,7 +8,7 @@ export default {
 };
 
 export const testProps = {
-  text: '🐱KimonoApp🐱',
+  text: '🐱KimonoApp🐱🐱',
 };
 
 export const showAppTitleWithProp = () => <AppTitle {...testProps} />;
