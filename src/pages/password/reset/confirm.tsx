@@ -80,6 +80,7 @@ const PasswordResetConfirmPage: React.FC<Props> = ({
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { userName, code } = context.query;
 

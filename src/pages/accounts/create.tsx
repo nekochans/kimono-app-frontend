@@ -18,7 +18,7 @@ const AccountCreatePage: React.FC = () => {
   const changedPasswordHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(event.target.value.trim());
 
-  const handleCreateAccountSubmit = async () => {
+  const handleCreateAccountSubmit = () => {
     if (!email || !password) {
       return;
     }
@@ -26,7 +26,7 @@ const AccountCreatePage: React.FC = () => {
     dispatch(createAccountRequest({ email, password }));
   };
 
-  const handleResendCreateAccountSubmit = async () => {
+  const handleResendCreateAccountSubmit = () => {
     if (!email) {
       return;
     }
