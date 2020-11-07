@@ -28,15 +28,15 @@ const LoginPage: React.FC = () => {
     color: 'red',
   };
 
-  const handleLoginSubmit = async () => {
+  const handleLoginSubmit = () => {
     if (!email || !password) {
       return;
     }
 
-    await dispatch(loginRequest({ email, password }));
+    dispatch(loginRequest({ email, password }));
   };
 
-  const handleResendCreateAccountSubmit = async () => {
+  const handleResendCreateAccountSubmit = () => {
     if (!email) {
       return;
     }

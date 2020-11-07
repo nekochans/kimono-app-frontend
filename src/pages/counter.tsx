@@ -36,8 +36,8 @@ const CounterPage: React.FC = () => {
     dispatch(counterSlice.actions.decrementCounter(1));
   };
 
-  const onClickAsyncIncrement = async () => {
-    await dispatch(asyncIncrementCounter(10));
+  const onClickAsyncIncrement = () => {
+    dispatch(asyncIncrementCounter(10));
   };
 
   return (
