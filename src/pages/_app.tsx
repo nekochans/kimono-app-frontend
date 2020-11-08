@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import Amplify from 'aws-amplify';
@@ -14,7 +14,7 @@ Amplify.configure({
   },
 });
 
-const kimonoApp = ({ Component, pageProps }: AppProps) => {
+const kimonoApp = ({ Component, pageProps }: AppProps): ReactNode => {
   return (
     <Provider store={createStore()}>
       <Component {...pageProps} />

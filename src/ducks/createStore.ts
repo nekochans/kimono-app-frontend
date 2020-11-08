@@ -1,6 +1,10 @@
 import { Store, combineReducers } from 'redux';
 import logger from 'redux-logger';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  EnhancedStore,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 import counterSlice, { initialState as counterState } from './counter/slice';
 import cognitoSlice, { initialState as cognitoState } from './cognito/slice';
 
@@ -20,7 +24,7 @@ export type StoreState = ReturnType<typeof preloadedState>;
 
 export type ReduxStoreInstance = Store<StoreState>;
 
-const createStore = () => {
+const createStore = (): EnhancedStore => {
   const middlewareList = [...getDefaultMiddleware(), logger];
 
   return configureStore({
