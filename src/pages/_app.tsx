@@ -17,7 +17,9 @@ Amplify.configure({
 const kimonoApp = ({ Component, pageProps }: AppProps): ReactNode => {
   return (
     <Provider store={createStore()}>
+      {/* eslint-disable react/jsx-props-no-spreading */}
       <Component {...pageProps} />
+      {/* eslint-disable react/jsx-props-no-spreading */}
     </Provider>
   );
 };

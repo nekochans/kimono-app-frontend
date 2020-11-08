@@ -13,7 +13,7 @@ const IndexPage: React.FC = () => {
 
   return (
     <>
-      <AppTitle {...props} />
+      <AppTitle text={props.text} />
       <div>
         <ul>
           <li>
