@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useCognitoState } from '../../ducks/cognito/selectors';
+import { useCognitoState } from '../../redux/cognito/selectors';
 import {
   createAccountRequest,
   resendCreateAccountRequest,
-} from '../../ducks/cognito/asyncActions';
+} from '../../redux/cognito/asyncActions';
 
 const AccountCreatePage: React.FC = () => {
   const dispatch = useDispatch();

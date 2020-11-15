@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
-import { useCognitoState } from '../ducks/cognito/selectors';
+import { useCognitoState } from '../redux/cognito/selectors';
 import {
   loginRequest,
   resendCreateAccountRequest,
-} from '../ducks/cognito/asyncActions';
+} from '../redux/cognito/asyncActions';
 
 const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
