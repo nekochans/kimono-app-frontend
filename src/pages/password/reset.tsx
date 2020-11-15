@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useCognitoState } from '../../ducks/cognito/selectors';
-import { passwordResetRequest } from '../../ducks/cognito/asyncActions';
+import { useCognitoState } from '../../redux/cognito/selectors';
+import { passwordResetRequest } from '../../redux/cognito/asyncActions';
 
 const PasswordResetPage: React.FC = () => {
   const dispatch = useDispatch();

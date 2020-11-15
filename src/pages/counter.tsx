@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import counterSlice from '../ducks/counter/slice';
-import { useCounterState } from '../ducks/counter/selectors';
-import { asyncIncrementCounter } from '../ducks/counter/asyncActions';
+import counterSlice from '../redux/counter/slice';
+import { useCounterState } from '../redux/counter/selectors';
+import { asyncIncrementCounter } from '../redux/counter/asyncActions';
 
 type ErrorMessageProps = {
   message: string;

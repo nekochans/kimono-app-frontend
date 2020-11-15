@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
 import { useDispatch } from 'react-redux';
-import { useCognitoState } from '../../../ducks/cognito/selectors';
-import { passwordResetConfirmRequest } from '../../../ducks/cognito/asyncActions';
+import { useCognitoState } from '../../../redux/cognito/selectors';
+import { passwordResetConfirmRequest } from '../../../redux/cognito/asyncActions';
 
 type Props = {
   user: { cognitoUserName: string };

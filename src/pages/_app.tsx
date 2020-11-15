@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import Amplify from 'aws-amplify';
-import createStore from '../ducks/createStore';
+import createStore from '../redux/createStore';
 
 Amplify.configure({
   Auth: {
