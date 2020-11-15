@@ -44,6 +44,7 @@ const counterSlice = createSlice({
           ...state,
           loading: false,
           error: true,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           errorMessage: action.error.message,
         };
       },
