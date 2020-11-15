@@ -16,6 +16,7 @@ import PasswordAttemptsExceededError from '../../domain/error/PasswordAttemptsEx
 import WrongCredentialsError from '../../domain/error/WrongCredentialsError';
 import PasswordResetRequestError from '../../domain/error/PasswordResetRequestError';
 import PasswordResetConfirmError from '../../domain/error/PasswordResetConfirmError';
+import { AmplifyError } from '../../domain/error/AmplifyError';
 
 export const createAccountRequest = createAsyncThunk<
   void,
@@ -29,11 +30,24 @@ export const createAccountRequest = createAsyncThunk<
         password: arg.password,
       });
     } catch (e) {
-      if (e.code === 'UsernameExistsException') {
-        throw new AccountAlreadyExistsError(e.message, e);
+      if (!('code' in e) || !('message' in e)) {
+        throw new CreateAccountUnexpectedError(
+          '予期せぬエラーが発生しました。',
+          e,
+        );
       }
 
-      throw new CreateAccountUnexpectedError(e.message, e);
+      const amplifyError = e as AmplifyError;
+
+      if (amplifyError.code === 'UsernameExistsException') {
+        throw new AccountAlreadyExistsError(amplifyError.message, amplifyError);
+      }
+
+      // TODO バリデーション用の専用エラーを作ったほうが良さそう
+      throw new CreateAccountUnexpectedError(
+        amplifyError.message,
+        amplifyError,
+      );
     }
   },
 );
@@ -47,7 +61,19 @@ export const resendCreateAccountRequest = createAsyncThunk<
     try {
       await Auth.resendSignUp(arg.email);
     } catch (e) {
-      throw new ResendCreateAccountRequestUnexpectedError(e.message, e);
+      if (!('code' in e) || !('message' in e)) {
+        throw new ResendCreateAccountRequestUnexpectedError(
+          '予期せぬエラーが発生しました。',
+          e,
+        );
+      }
+
+      const amplifyError = e as AmplifyError;
+
+      throw new ResendCreateAccountRequestUnexpectedError(
+        amplifyError.message,
+        amplifyError,
+      );
     }
   },
 );
@@ -58,22 +84,31 @@ export const loginRequest = createAsyncThunk<void, LoginRequest>(
     try {
       await Auth.signIn(arg.email, arg.password);
     } catch (e) {
-      if (e.code === 'UserNotConfirmedException') {
-        throw new NotConfirmedError(e.message, e);
+      if (!('code' in e) || !('message' in e)) {
+        throw new LoginUnexpectedError('予期せぬエラーが発生しました。', e);
+      }
+
+      const amplifyError = e as AmplifyError;
+
+      if (amplifyError.code === 'UserNotConfirmedException') {
+        throw new NotConfirmedError(amplifyError.message, amplifyError);
       }
 
       if (
-        e.code === 'NotAuthorizedException' &&
-        e.message === 'Password attempts exceeded'
+        amplifyError.code === 'NotAuthorizedException' &&
+        amplifyError.message === 'Password attempts exceeded'
       ) {
-        throw new PasswordAttemptsExceededError(e.message, e);
+        throw new PasswordAttemptsExceededError(
+          amplifyError.message,
+          amplifyError,
+        );
       }
 
-      if (e.code === 'NotAuthorizedException') {
-        throw new WrongCredentialsError(e.message, e);
+      if (amplifyError.code === 'NotAuthorizedException') {
+        throw new WrongCredentialsError(amplifyError.message, amplifyError);
       }
 
-      throw new LoginUnexpectedError(e.message, e);
+      throw new LoginUnexpectedError(amplifyError.message, amplifyError);
     }
   },
 );
@@ -85,7 +120,13 @@ export const passwordResetRequest = createAsyncThunk<
   try {
     await Auth.forgotPassword(arg.email);
   } catch (e) {
-    throw new PasswordResetRequestError(e.message, e);
+    if (!('code' in e) || !('message' in e)) {
+      throw new PasswordResetRequestError('予期せぬエラーが発生しました。', e);
+    }
+
+    const amplifyError = e as AmplifyError;
+
+    throw new PasswordResetRequestError(amplifyError.message, amplifyError);
   }
 });
 
@@ -102,7 +143,16 @@ export const passwordResetConfirmRequest = createAsyncThunk<
         arg.newPassword,
       );
     } catch (e) {
-      throw new PasswordResetConfirmError(e.message, e);
+      if (!('code' in e) || !('message' in e)) {
+        throw new PasswordResetConfirmError(
+          '予期せぬエラーが発生しました。',
+          e,
+        );
+      }
+
+      const amplifyError = e as AmplifyError;
+
+      throw new PasswordResetConfirmError(amplifyError.message, amplifyError);
     }
   },
 );

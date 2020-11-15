@@ -23,13 +23,13 @@ const PasswordResetConfirmPage: React.FC<Props> = ({
     event: React.ChangeEvent<HTMLInputElement>,
   ) => setNewPassword(event.target.value.trim());
 
-  const handleNewPasswordSubmit = async () => {
+  const handleNewPasswordSubmit = () => {
     if (!user?.cognitoUserName || !confirmationCode || !newPassword) {
       // TODO ここでreturnすると不具合があった際に分かりにくいのでエラー用Componentを表示させる
       return;
     }
 
-    await dispatch(
+    dispatch(
       passwordResetConfirmRequest({
         cognitoUserName: user.cognitoUserName,
         confirmationCode,
@@ -80,6 +80,7 @@ const PasswordResetConfirmPage: React.FC<Props> = ({
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { userName, code } = context.query;
 

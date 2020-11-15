@@ -26,7 +26,7 @@ const StyledErrorMessage: React.FC<ErrorMessageProps> = ({
 
 const CounterPage: React.FC = () => {
   const dispatch = useDispatch();
-  const state = useCounterState().counter;
+  const state = useCounterState();
 
   const onClickIncrement = () => {
     dispatch(counterSlice.actions.incrementCounter(1));
@@ -36,8 +36,8 @@ const CounterPage: React.FC = () => {
     dispatch(counterSlice.actions.decrementCounter(1));
   };
 
-  const onClickAsyncIncrement = async () => {
-    await dispatch(asyncIncrementCounter(10));
+  const onClickAsyncIncrement = () => {
+    dispatch(asyncIncrementCounter(10));
   };
 
   return (
@@ -55,7 +55,7 @@ const CounterPage: React.FC = () => {
       >
         非同期でふやす
       </button>
-      <p>ねこが{useCounterState().counter.count} 匹いる</p>
+      <p>ねこが{state.count} 匹いる</p>
       {state.loading ? <p>通信中</p> : ''}
       {state.error ? (
         <StyledErrorMessage {...{ message: state.errorMessage }} />

@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 type User = {
   id: number;
@@ -13,7 +13,10 @@ type UserResponse = {
   };
 };
 
-export default (req: NextApiRequest, res: NextApiResponse<UserResponse>) => {
+const handler: NextApiHandler = (
+  req: NextApiRequest,
+  res: NextApiResponse<UserResponse>,
+): void => {
   const userId: number = parseInt(req.query.userId as string, 10);
 
   const users = [
@@ -42,3 +45,5 @@ export default (req: NextApiRequest, res: NextApiResponse<UserResponse>) => {
 
   return res.status(200).json(responseBody);
 };
+
+export default handler;

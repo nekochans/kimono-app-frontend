@@ -7,13 +7,11 @@ export const config = {
 };
 
 const IndexPage: React.FC = () => {
-  const props = {
-    text: '🐱着物アプリ🐱',
-  };
+  const text = '🐱着物アプリ🐱';
 
   return (
     <>
-      <AppTitle {...props} />
+      <AppTitle text={text} />
       <div>
         <ul>
           <li>

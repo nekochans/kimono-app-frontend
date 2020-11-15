@@ -12,12 +12,12 @@ const PasswordResetPage: React.FC = () => {
   const changedEmailHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(event.target.value.trim());
 
-  const handlePasswordResetSubmit = async () => {
+  const handlePasswordResetSubmit = () => {
     if (!email) {
       return;
     }
 
-    await dispatch(passwordResetRequest({ email }));
+    dispatch(passwordResetRequest({ email }));
   };
 
   const inputStyle = {

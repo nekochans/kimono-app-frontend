@@ -6,7 +6,7 @@ import {
 import { NextPageContext } from 'next';
 
 export const findCookies = <T>(ctx?: NextPageContext): T => {
-  const cookies: {} = parseCookies(ctx);
+  const cookies: Record<string, unknown> = parseCookies(ctx);
 
   return cookies as T;
 };
@@ -16,7 +16,10 @@ type SetCookieParams = {
   value: string;
 };
 
-export const setCookie = (params: SetCookieParams, ctx?: NextPageContext) => {
+export const setCookie = (
+  params: SetCookieParams,
+  ctx?: NextPageContext,
+): void => {
   // TODO 以下を参考に外からoptionsを設定可能にする
   // https://github.com/maticzav/nookies#setcookiectx-name-value-options-or-cookiessetctx-name-value-options
   nookiesSetCookie(ctx, params.key, params.value, {
@@ -32,6 +35,6 @@ type DestroyCookieParams = {
 export const destroyCookie = (
   ctx: NextPageContext,
   params: DestroyCookieParams,
-) => {
+): void => {
   nookiesDestroyCookie(ctx, params.key);
 };

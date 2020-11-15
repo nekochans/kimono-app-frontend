@@ -49,6 +49,7 @@ module.exports = {
     // SEE: https://github.com/typescript-eslint/typescript-eslint/issues/1184
     'no-void': 'off',
     'no-use-before-define': 'off',
+    'import/prefer-default-export': 'off',
     'padding-line-between-statements': [
       'error',
       {

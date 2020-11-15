@@ -67,8 +67,8 @@ const cognitoSlice = createSlice({
           ...state,
           loading: false,
           error: true,
-          errorName: action.error.name,
-          errorMessage: action.error.message,
+          errorName: action.error.name, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          errorMessage: action.error.message, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           successfulAccountCreateRequest: false,
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
@@ -114,8 +114,8 @@ const cognitoSlice = createSlice({
           ...state,
           loading: false,
           error: true,
-          errorName: action.error.name,
-          errorMessage: action.error.message,
+          errorName: action.error.name, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          errorMessage: action.error.message, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           successfulAccountCreateRequest: false,
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
@@ -159,8 +159,8 @@ const cognitoSlice = createSlice({
           ...state,
           loading: false,
           error: false,
-          errorName: action.error.name,
-          errorMessage: action.error.message,
+          errorName: action.error.name, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          errorMessage: action.error.message, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           successfulAccountCreateRequest: false,
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
@@ -207,8 +207,8 @@ const cognitoSlice = createSlice({
           ...state,
           loading: false,
           error: true,
-          errorName: action.error.name,
-          errorMessage: action.error.message,
+          errorName: action.error.name, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          errorMessage: action.error.message, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           successfulAccountCreateRequest: false,
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,
@@ -255,8 +255,8 @@ const cognitoSlice = createSlice({
           ...state,
           loading: false,
           error: true,
-          errorName: action.error.name,
-          errorMessage: action.error.message,
+          errorName: action.error.name, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          errorMessage: action.error.message, // eslint-disable-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           successfulAccountCreateRequest: false,
           successfulResendAccountCreateRequest: false,
           successfulLoginRequest: false,

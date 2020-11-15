@@ -11,4 +11,6 @@ export const testProps = {
   text: '🐱KimonoApp🐱',
 };
 
-export const showAppTitleWithProp = () => <AppTitle {...testProps} />;
+export const showAppTitleWithProp = (): JSX.Element => (
+  <AppTitle text={testProps.text} />
+);
