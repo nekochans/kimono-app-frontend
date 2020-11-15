@@ -40,6 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return { props: { user: { cognitoUserName: userName } } };
   } catch (e) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     return { props: { error: e } };
   }
 };
