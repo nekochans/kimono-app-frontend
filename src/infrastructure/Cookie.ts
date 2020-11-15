@@ -6,7 +6,7 @@ import {
 import { NextPageContext } from 'next';
 
 export const findCookies = <T>(ctx?: NextPageContext): T => {
-  const cookies: {} = parseCookies(ctx);
+  const cookies: Record<string, unknown> = parseCookies(ctx);
 
   return cookies as T;
 };
