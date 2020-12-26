@@ -6,7 +6,7 @@ import {
   LoginRequest,
   PasswordResetRequest,
   PasswordResetConfirmRequest,
-} from '../../domain/Cognito';
+} from '../../domain/cognito/request';
 import AccountAlreadyExistsError from '../../domain/error/AccountAlreadyExistsError';
 import CreateAccountUnexpectedError from '../../domain/error/CreateAccountUnexpectedError';
 import ResendCreateAccountRequestUnexpectedError from '../../domain/error/ResendCreateAccountRequestUnexpectedError';
