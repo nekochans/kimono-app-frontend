@@ -10,7 +10,7 @@ Amplify.configure({
     userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID,
     userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_WEB_CLIENT_ID,
     mandatorySignIn: false,
-    authenticationFlowType: 'USER_PASSWORD_AUTH',
+    authenticationFlowType: 'USER_SRP_AUTH',
     cookieStorage: {
       domain: process.env.NEXT_PUBLIC_AUTH_COOKIE_DOMAIN,
       path: '/',
