@@ -12,6 +12,14 @@ Amplify.configure({
     mandatorySignIn: false,
     authenticationFlowType: 'USER_PASSWORD_AUTH',
   },
+  oauth: {
+    domain: process.env.NEXT_PUBLIC_COGNITO_DOMAIN,
+    scope: ['profile', 'email', 'openid'],
+    redirectSignIn: `${String(process.env.NEXT_PUBLIC_APP_URL)}/idp/callback`,
+    redirectSignOut: `${String(process.env.NEXT_PUBLIC_APP_URL)}/idp/logout`,
+    responseType: 'code',
+  },
+  ssr: true,
 });
 
 const kimonoApp = ({ Component, pageProps }: AppProps): ReactNode => {
