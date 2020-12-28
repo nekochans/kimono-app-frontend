@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { urlList } from '../constants/url';
+import { fetchCognitoJsonWebKeys } from '../infrastructure/repository/CognitoJwkRepository';
+import { verifyIdToken } from '../domain/cognito/token';
 
 type AuthenticatedState = {
   authenticated: boolean;
@@ -23,6 +25,11 @@ export const useMightAuthenticationRedirect = (): AuthenticatedState => {
             window.location.href = urlList.login;
           }
         }
+
+        await verifyIdToken(
+          cognitoUserSession.getIdToken().getJwtToken(),
+          fetchCognitoJsonWebKeys,
+        );
 
         if (!unmounted) {
           setIdToken(cognitoUserSession.getIdToken().getJwtToken());
