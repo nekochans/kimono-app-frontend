@@ -10,7 +10,7 @@ type AuthenticatedState = {
 };
 
 /**
- * ログイン状態かどうかを確認しログイン状態でなければリダイレクト
+ * ログイン状態かどうかを確認しログイン状態でなければログインページにリダイレクト
  */
 export const useMightAuthenticationRedirect = (): AuthenticatedState => {
   const [authenticated, setAuthenticated] = useState(false);
