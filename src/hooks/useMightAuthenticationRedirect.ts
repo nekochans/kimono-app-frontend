@@ -9,6 +9,9 @@ type AuthenticatedState = {
   idToken: string;
 };
 
+/**
+ * ログイン状態かどうかを確認しログイン状態でなければリダイレクト
+ */
 export const useMightAuthenticationRedirect = (): AuthenticatedState => {
   const [authenticated, setAuthenticated] = useState(false);
   const [idToken, setIdToken] = useState('');
