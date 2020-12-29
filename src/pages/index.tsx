@@ -20,6 +20,9 @@ const IndexPage: React.FC = () => {
           <li>
             <Link href="/login">ログイン</Link>
           </li>
+          <li>
+            <Link href="/my">Myページ（ログインしないと見れません）</Link>
+          </li>
         </ul>
       </div>
     </>
