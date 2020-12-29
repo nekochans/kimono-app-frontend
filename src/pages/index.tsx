@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import AppTitle from '../components/AppTitle';
+import { urlList } from '../constants/url';
 
 export const config = {
   amp: true,
@@ -15,13 +16,15 @@ const IndexPage: React.FC = () => {
       <div>
         <ul>
           <li>
-            <Link href="/accounts/create">アカウント作成</Link>
+            <Link href={urlList.createAccount}>アカウント作成</Link>
           </li>
           <li>
-            <Link href="/login">ログイン</Link>
+            <Link href={urlList.login}>ログイン</Link>
           </li>
           <li>
-            <Link href="/my">Myページ（ログインしないと見れません）</Link>
+            <Link href={urlList.my}>
+              Myページ（ログインしないと見れません）
+            </Link>
           </li>
         </ul>
       </div>

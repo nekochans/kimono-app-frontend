@@ -4,6 +4,7 @@ const appBaseUrl = (): string => {
 
 export const urlList = {
   top: appBaseUrl(),
+  createAccount: `${appBaseUrl()}/accounts/create`,
   login: `${appBaseUrl()}/login`,
   my: `${appBaseUrl()}/my`,
 } as const;
