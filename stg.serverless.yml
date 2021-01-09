@@ -1,0 +1,6 @@
+stgKimonoAppFrontend:
+  component: "@sls-next/serverless-component@1.18.0"
+  inputs:
+    bucketName: "stg-kimono-app-frontend-app"
+    name: "stg-kimono-app-frontend-app"
+    domain: "kimono-app.net"

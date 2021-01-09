@@ -21,7 +21,9 @@
     "test:coverage": "jest --collect-coverage",
     "test:ci": "jest --runInBand --collect-coverage",
     "storybook": "start-storybook -p 6006",
-    "build:storybook": "build-storybook -o build/storybook"
+    "build:storybook": "build-storybook -o build/storybook",
+    "deploy:stg": "cp stg.serverless.yml serverless.yml && serverless -v",
+    "remove:stg": "cp stg.serverless.yml serverless.yml && serverless remove -v"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
@@ -89,6 +91,7 @@
     "react-docgen-typescript-loader": "^3.7.2",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-test-renderer": "^16.14.0",
+    "serverless": "^2.17.0",
     "stylelint": "^13.7.2",
     "stylelint-config-recess-order": "^2.3.0",
     "stylelint-config-standard": "^20.0.0",
