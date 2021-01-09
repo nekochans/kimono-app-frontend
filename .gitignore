@@ -113,3 +113,6 @@ build
 
 # PostCSS output
 src/styles/bundle.css
+
+# Serverless Setting File
+serverless.yml
