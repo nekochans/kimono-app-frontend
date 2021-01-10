@@ -3,16 +3,9 @@ import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import Amplify from 'aws-amplify';
 import createStore from '../redux/createStore';
+import { amplifyConfig } from '../domain/cognito/environmentVariable';
 
-Amplify.configure({
-  Auth: {
-    region: 'ap-northeast-1',
-    userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID,
-    userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_WEB_CLIENT_ID,
-    mandatorySignIn: false,
-    authenticationFlowType: 'USER_PASSWORD_AUTH',
-  },
-});
+Amplify.configure(amplifyConfig());
 
 const kimonoApp = ({ Component, pageProps }: AppProps): ReactNode => {
   return (

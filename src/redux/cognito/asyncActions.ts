@@ -6,17 +6,17 @@ import {
   LoginRequest,
   PasswordResetRequest,
   PasswordResetConfirmRequest,
-} from '../../domain/Cognito';
-import AccountAlreadyExistsError from '../../domain/error/AccountAlreadyExistsError';
-import CreateAccountUnexpectedError from '../../domain/error/CreateAccountUnexpectedError';
-import ResendCreateAccountRequestUnexpectedError from '../../domain/error/ResendCreateAccountRequestUnexpectedError';
-import NotConfirmedError from '../../domain/error/NotConfirmedError';
-import LoginUnexpectedError from '../../domain/error/LoginUnexpectedError';
-import PasswordAttemptsExceededError from '../../domain/error/PasswordAttemptsExceededError';
-import WrongCredentialsError from '../../domain/error/WrongCredentialsError';
-import PasswordResetRequestError from '../../domain/error/PasswordResetRequestError';
-import PasswordResetConfirmError from '../../domain/error/PasswordResetConfirmError';
-import { AmplifyError } from '../../domain/error/AmplifyError';
+} from '../../domain/cognito/request';
+import AccountAlreadyExistsError from '../../domain/error/cognito/AccountAlreadyExistsError';
+import CreateAccountUnexpectedError from '../../domain/error/cognito/CreateAccountUnexpectedError';
+import ResendCreateAccountRequestUnexpectedError from '../../domain/error/cognito/ResendCreateAccountRequestUnexpectedError';
+import NotConfirmedError from '../../domain/error/cognito/NotConfirmedError';
+import LoginUnexpectedError from '../../domain/error/cognito/LoginUnexpectedError';
+import PasswordAttemptsExceededError from '../../domain/error/cognito/PasswordAttemptsExceededError';
+import WrongCredentialsError from '../../domain/error/cognito/WrongCredentialsError';
+import PasswordResetRequestError from '../../domain/error/cognito/PasswordResetRequestError';
+import PasswordResetConfirmError from '../../domain/error/cognito/PasswordResetConfirmError';
+import { AmplifyError } from '../../domain/error/cognito/AmplifyError';
 
 export const createAccountRequest = createAsyncThunk<
   void,

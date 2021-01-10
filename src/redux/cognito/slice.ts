@@ -12,7 +12,7 @@ import {
   PasswordResetConfirmRequest,
   PasswordResetRequest,
   ResendCreateAccountRequest,
-} from '../../domain/Cognito';
+} from '../../domain/cognito/request';
 
 export type CognitoState = {
   error: boolean;

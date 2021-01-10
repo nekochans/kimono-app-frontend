@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useCognitoState } from '../redux/cognito/selectors';
 import {
   loginRequest,
   resendCreateAccountRequest,
 } from '../redux/cognito/asyncActions';
+import { urlList } from '../constants/url';
 
 const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
   const state = useCognitoState();
+  const router = useRouter();
 
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
@@ -28,7 +31,20 @@ const LoginPage: React.FC = () => {
     color: 'red',
   };
 
-  const handleLoginSubmit = () => {
+  useEffect(() => {
+    const redirectToAfterLoggedIn = async () => {
+      await router.push(urlList.my);
+    };
+
+    if (state.successfulLoginRequest) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      redirectToAfterLoggedIn();
+    }
+  });
+
+  const handleLoginSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (!email || !password) {
       return;
     }
