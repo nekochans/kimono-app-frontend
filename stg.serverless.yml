@@ -3,4 +3,4 @@ stgKimonoAppFrontend:
   inputs:
     bucketName: "stg-kimono-app-frontend-app"
     name: "stg-kimono-app-frontend-app"
-    domain: "kimono-app.net"
+    domain: ["stg", "kimono-app.net"]
