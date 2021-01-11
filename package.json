@@ -22,8 +22,8 @@
     "test:ci": "jest --runInBand --collect-coverage",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -o build/storybook",
-    "deploy:stg": "cp stg.serverless.yml serverless.yml && serverless -v",
-    "remove:stg": "cp stg.serverless.yml serverless.yml && serverless remove -v"
+    "deploy:stg": "cp stg.serverless.yml serverless.yml && AWS_PROFILE=kimono-app-stg serverless -v",
+    "remove:stg": "cp stg.serverless.yml serverless.yml && AWS_PROFILE=kimono-app-stg serverless remove -v"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
