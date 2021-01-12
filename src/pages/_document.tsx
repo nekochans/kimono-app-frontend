@@ -31,7 +31,13 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          {String(process.env.NEXT_PUBLIC_DEPLOY_STAGE) !== 'prod' ? (
+            <meta name="robots" content="noindex,nofollow" />
+          ) : (
+            ''
+          )}
+        </Head>
         <body>
           <Main />
           <NextScript />

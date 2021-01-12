@@ -93,6 +93,7 @@ dist
 
 # Serverless directories
 .serverless/
+.serverless_nextjs
 
 # FuseBox cache
 .fusebox/
@@ -112,3 +113,6 @@ build
 
 # PostCSS output
 src/styles/bundle.css
+
+# Serverless Setting File
+serverless.yml
