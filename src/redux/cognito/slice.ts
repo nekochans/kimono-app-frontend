@@ -43,7 +43,23 @@ export const initialState: CognitoState = {
 const cognitoSlice = createSlice({
   name: 'cognito',
   initialState,
-  reducers: {},
+  reducers: {
+    loggedOut: (state) => {
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        errorName: '',
+        errorMessage: '',
+        successfulAccountCreateRequest: false,
+        successfulResendAccountCreateRequest: false,
+        successfulLoginRequest: false,
+        successfulPasswordResetRequest: false,
+        successfulPasswordResetConfirm: false,
+        sentEmail: '',
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createAccountRequest.pending, (state) => {
       return {
