@@ -12,7 +12,7 @@ type AuthenticatedState = {
 /**
  * ログイン状態かどうかを確認しログイン状態でなければログインページにリダイレクト
  */
-export const useMightAuthenticationRedirect = (): AuthenticatedState => {
+const useMightAuthenticationRedirect = (): AuthenticatedState => {
   const [authenticated, setAuthenticated] = useState(false);
   const [idToken, setIdToken] = useState('');
 
@@ -58,3 +58,5 @@ export const useMightAuthenticationRedirect = (): AuthenticatedState => {
     idToken,
   };
 };
+
+export default useMightAuthenticationRedirect;

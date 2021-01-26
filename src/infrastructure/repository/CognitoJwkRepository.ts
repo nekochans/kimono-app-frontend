@@ -5,6 +5,7 @@ import {
 import { JwkList } from '../../domain/cognito/entity';
 import FetchCognitoJsonWebKeysError from '../../domain/error/cognito/FetchCognitoJsonWebKeysError';
 
+// eslint-disable-next-line import/prefer-default-export
 export const fetchCognitoJsonWebKeys = async (): Promise<JwkList> => {
   const url = `https://cognito-idp.${cognitoRegion()}.amazonaws.com/${cognitoUserPoolId()}/.well-known/jwks.json`;
 
