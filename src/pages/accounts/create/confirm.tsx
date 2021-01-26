@@ -8,23 +8,20 @@ type Props = {
   error: Error;
 };
 
-const AccountCreateConfirmPage: React.FC<Props> = ({ user, error }: Props) => {
+const AccountCreateConfirmPage: React.FC<Props> = ({ user, error }: Props) => (
   // TODO ちゃんとしたエラー表示用のComponentを作成して表示させる
-  return (
-    <>
-      {error ? <div>エラーが発生しました。 {error.message}</div> : ''}
-      {user ? (
-        <div>
-          アカウント登録が完了しました！ アカウントIDは {user.cognitoUserName}{' '}
-          です！ <Link href="/login">ログイン</Link> を行って下さい！
-        </div>
-      ) : (
-        ''
-      )}
-    </>
-  );
-};
-
+  <>
+    {error ? <div>エラーが発生しました。 {error.message}</div> : ''}
+    {user ? (
+      <div>
+        アカウント登録が完了しました！ アカウントIDは {user.cognitoUserName}{' '}
+        です！ <Link href="/login">ログイン</Link> を行って下さい！
+      </div>
+    ) : (
+      ''
+    )}
+  </>
+);
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const { userName, code } = context.query;

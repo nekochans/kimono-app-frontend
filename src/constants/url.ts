@@ -1,6 +1,5 @@
-const appBaseUrl = (): string => {
-  return process.env.NEXT_PUBLIC_APP_URL ? process.env.NEXT_PUBLIC_APP_URL : '';
-};
+const appBaseUrl = (): string =>
+  process.env.NEXT_PUBLIC_APP_URL ? process.env.NEXT_PUBLIC_APP_URL : '';
 
 export const urlList = {
   top: appBaseUrl(),

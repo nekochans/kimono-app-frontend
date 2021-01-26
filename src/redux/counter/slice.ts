@@ -29,37 +29,31 @@ const counterSlice = createSlice({
     }),
   },
   extraReducers: (builder) => {
-    builder.addCase(asyncIncrementCounter.pending, (state) => {
-      return {
-        ...state,
-        loading: true,
-        error: false,
-        errorMessage: '',
-      };
-    });
+    builder.addCase(asyncIncrementCounter.pending, (state) => ({
+      ...state,
+      loading: true,
+      error: false,
+      errorMessage: '',
+    }));
     builder.addCase(
       asyncIncrementCounter.rejected,
-      (state, action: RejectedAction<number>) => {
-        return {
-          ...state,
-          loading: false,
-          error: true,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-          errorMessage: action.error.message,
-        };
-      },
+      (state, action: RejectedAction<number>) => ({
+        ...state,
+        loading: false,
+        error: true,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        errorMessage: action.error.message,
+      }),
     );
     builder.addCase(
       asyncIncrementCounter.fulfilled,
-      (state, action: PayloadAction<number>) => {
-        return {
-          ...state,
-          count: state.count + action.payload,
-          loading: false,
-          error: false,
-          errorMessage: '',
-        };
-      },
+      (state, action: PayloadAction<number>) => ({
+        ...state,
+        count: state.count + action.payload,
+        loading: false,
+        error: false,
+        errorMessage: '',
+      }),
     );
   },
 });

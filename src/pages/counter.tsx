@@ -10,19 +10,17 @@ type ErrorMessageProps = {
 
 const StyledErrorMessage: React.FC<ErrorMessageProps> = ({
   message,
-}: ErrorMessageProps) => {
-  return (
-    <>
-      <style jsx>{`
-        p {
-          color: red;
-          font-weight: bold;
-        }
-      `}</style>
-      <p>問題が発生しました。 {message}</p>
-    </>
-  );
-};
+}: ErrorMessageProps) => (
+  <>
+    <style jsx>{`
+      p {
+        color: red;
+        font-weight: bold;
+      }
+    `}</style>
+    <p>問題が発生しました。 {message}</p>
+  </>
+);
 
 const CounterPage: React.FC = () => {
   const dispatch = useDispatch();
