@@ -13,7 +13,7 @@ import {
   cognitoUserPoolId,
 } from './environmentVariable';
 import { FetchCognitoJsonWebKeys } from './repository';
-import { CognitoVerifyTokenError } from '../error/cognito/CognitoVerifyTokenError';
+import CognitoVerifyTokenError from '../error/cognito/CognitoVerifyTokenError';
 
 const createPublicPem = (jwkList: JwkList) => {
   const region = cognitoRegion();
@@ -56,6 +56,7 @@ const extractPem = (
   return cognitoPublicPemList[region][userPoolId][header.kid];
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const verifyIdToken = async (
   idToken: string,
   fetchCognitoJsonWebKeys: FetchCognitoJsonWebKeys,

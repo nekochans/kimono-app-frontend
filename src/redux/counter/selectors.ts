@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { CounterState } from './slice';
 
-export const useCounterState = (): CounterState => {
-  return useSelector((state: { counter: CounterState }) => state.counter);
-};
+// eslint-disable-next-line import/prefer-default-export
+export const useCounterState = (): CounterState =>
+  useSelector((state: { counter: CounterState }) => state.counter);

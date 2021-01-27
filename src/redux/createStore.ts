@@ -13,12 +13,10 @@ const rootReducer = combineReducers({
   cognito: cognitoSlice.reducer,
 });
 
-const preloadedState = () => {
-  return {
-    counter: counterState,
-    cognito: cognitoState,
-  };
-};
+const preloadedState = () => ({
+  counter: counterState,
+  cognito: cognitoState,
+});
 
 export type StoreState = ReturnType<typeof preloadedState>;
 

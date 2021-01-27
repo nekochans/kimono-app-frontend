@@ -7,14 +7,12 @@ import { amplifyConfig } from '../domain/cognito/environmentVariable';
 
 Amplify.configure(amplifyConfig());
 
-const kimonoApp = ({ Component, pageProps }: AppProps): ReactNode => {
-  return (
-    <Provider store={createStore()}>
-      {/* eslint-disable react/jsx-props-no-spreading */}
-      <Component {...pageProps} />
-      {/* eslint-disable react/jsx-props-no-spreading */}
-    </Provider>
-  );
-};
+const kimonoApp = ({ Component, pageProps }: AppProps): ReactNode => (
+  <Provider store={createStore()}>
+    {/* eslint-disable react/jsx-props-no-spreading */}
+    <Component {...pageProps} />
+    {/* eslint-disable react/jsx-props-no-spreading */}
+  </Provider>
+);
 
 export default kimonoApp;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useMightAuthenticationRedirect } from '../hooks/useMightAuthenticationRedirect';
+import useMightAuthenticationRedirect from '../hooks/useMightAuthenticationRedirect';
 import { urlList } from '../constants/url';
 
 const MyPage: React.FC = () => {

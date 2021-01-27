@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const sleep = (microSecond: number) =>
   new Promise((resolve) => setTimeout(resolve, microSecond));
 
+// eslint-disable-next-line import/prefer-default-export
 export const asyncIncrementCounter = createAsyncThunk<number, number>(
   'counter/asyncIncrementCounter',
   async (arg: number): Promise<number> => {

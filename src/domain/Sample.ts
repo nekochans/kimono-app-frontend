@@ -1,4 +1,3 @@
 // TODO JESTの動作確認用に作ったので後で削除する
-export const square = (num: number): number => {
-  return num * 2;
-};
+// eslint-disable-next-line import/prefer-default-export
+export const square = (num: number): number => num * 2;

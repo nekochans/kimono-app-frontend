@@ -24,9 +24,7 @@ const handler: NextApiHandler = (
     { id: 2, name: 'Mop' },
   ];
 
-  const responseUser = users.filter((user: User) => {
-    return user.id === userId;
-  });
+  const responseUser = users.filter((user: User) => user.id === userId);
 
   if (responseUser.length === 0) {
     const responseBody = {
