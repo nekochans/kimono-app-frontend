@@ -6,7 +6,6 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['<rootDir>/test/setupTests.ts'],
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
