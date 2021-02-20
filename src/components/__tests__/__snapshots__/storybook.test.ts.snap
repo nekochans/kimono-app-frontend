@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots src/components/AppTitle.tsx Show App Title With Prop 1`] = `
+Array [
+  <h1>
+    🐱KimonoApp🐱
+  </h1>,
+  <style
+    jsx={true}
+  >
+    
+      h1 {
+        color: red;
+        font-size: 50px;
+      }
+    
+  </style>,
+]
+`;
