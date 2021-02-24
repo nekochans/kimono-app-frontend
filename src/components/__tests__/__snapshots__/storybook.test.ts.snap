@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AppTitle 1`] = `
+exports[`Storyshots src/components/AppTitle.tsx Show App Title With Prop 1`] = `
 Array [
   <h1>
     🐱KimonoApp🐱
